@@ -7,18 +7,20 @@
 </head>
 <body>
     <div>
-        <p> Nome do usuário:  {{nome_usuario}}</p>
+        <p> Nome do usuário:  {{dados.nome_salvo}}</p>
         <p> Id de sessão: </p>
-        <p> Idioma: </p>
+        <p> Idioma: {{dados.idioma}}</p>
     </div>
 
     <div>
-        <p> Duração do cookie:  </p>
+        <p> Criação do cookie: {{dados.criacao_cookie}}</p>
+        <p> Duração do cookie: </p>
 
     </div>
     <div>
         <p>Tema do navegador: </p>
-        <p>Timestamp da visita: </p>
+        <p>Timestamp da visita: {{dados.timestamp}}</p>
+        <p>Origem da visita: {{dados.referencia}}</p>
         <p>Sistema operacional: </p>
 
     </div>
