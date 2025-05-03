@@ -20,3 +20,12 @@ Esse cookie contem as seguintes características
     - Timestamp da visita (ex: visitado em)
     - Origem da visita (ex: referencia=google)
     - Tipo de navegador / sistema operacional
+
+
+
+### Bibliotecas utilizadas
+
+Para esse trabalho foi utilizado o _microframework_ ``Flask``. Para instalar, é necessário rodar o código
+> ``pip install Flask`` 
+
+Além disso, o programa foi rodado em um ambiente virtual.
