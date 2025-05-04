@@ -5,7 +5,7 @@ Esse cookie contem as seguintes características
 
 1.  **Nome e valor**    
     - O nome (chave) identifica o cookie.
-    - O valor que à armazenar, como o contador, ID de sessão e idioma.
+    - O valor que à armazenar: nome, ID de sessão e idioma.
 
 
 2. **Validade / Expiração (expires ou max-age)**
@@ -19,7 +19,6 @@ Esse cookie contem as seguintes características
     - Data ou hora da ultima visita;    
     - Timestamp da visita (ex: visitado em)
     - Origem da visita (ex: referencia=google)
-    - Tipo de navegador / sistema operacional
 
 
 
@@ -27,5 +26,6 @@ Esse cookie contem as seguintes características
 
 Para esse trabalho foi utilizado o _microframework_ ``Flask``. Para instalar, é necessário rodar o código
 > ``pip install Flask`` 
+Ele é um WSGI leve que foi designado para começar aplicações rapidamente e que possam ser escaladas para outras de maior complexidades
 
-Além disso, o programa foi rodado em um ambiente virtual.
+Além disso, o programa foi rodado em um ambiente virtual `.venv`.
