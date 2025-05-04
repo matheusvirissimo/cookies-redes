@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, render_template, session
 from datetime import datetime
-import time, string, random
+import time, string, random, json
 
 app = Flask(__name__, template_folder="Template") ## nome do site é a variável
 app.secret_key = "chave"
@@ -29,37 +29,37 @@ def criar_cookie():
     idioma = request.headers.get("Accept-Language")
     timestamp = str(time.time())
 
+    #cookie em dicionário para compactar
+
+    dados_cookies = {
+        "nome_salvo": nome_usuario,
+        "id_sessao": id_sessao,
+        "timestamp": timestamp,
+        "criacao_cookie": criacao_cookie,
+        "referencia": referencia,
+        "idioma": idioma,
+    }
+
+    dados_compactados = json.dumps(dados_cookies)
 
     # cookie
     resposta = make_response("Cookie foi criado") # pode retornar qualquer coisa dentro desse parâmetro
-    resposta.set_cookie("cookie temporário", "tempo de 30 segundos", max_age=10)
-    resposta.set_cookie("usuario", nome_usuario, max_age=None) # é um dicionário do Python
-    resposta.set_cookie("id_sessao", id_sessao)
-    resposta.set_cookie("criacao_cookie", criacao_cookie)
-    resposta.set_cookie("referencia", referencia)
-    resposta.set_cookie("idioma", idioma)
-    resposta.set_cookie("timestamp", timestamp)
+    resposta.set_cookie("cookie_temporário", "tempo de 30 segundos", max_age=10)
+    resposta.set_cookie("info_usuario", dados_compactados)
+
     return resposta
 
 @app.route("/ver_cookie")
 def ver_cookie(): 
-    cookies = request.cookies # vem em formato de dicionário   
-
-    dados = {
-        "nome_salvo": cookies.get("usuario"),
-        "id_sessao": cookies.get("id_sessao"),
-        "criacao_cookie": cookies.get("criacao_cookie"), 
-        "referencia": cookies.get("referencia"),
-        "idioma": cookies.get("idioma"),
-        "timestamp": cookies.get("timestamp")
-    }
+    cookies = request.cookies.get("info_usuario") # vem em formato de dicionário   
+    dados = json.loads(cookies)
 
     return render_template("view_cookie.html", dados=dados)
 
 @app.route("/deletar_cookie")
 def deletar_cookie():
     resposta = make_response("Deletando cookie")
-    resposta.set_cookie("usuario", "", expires=0)
+    resposta.set_cookie("info_usuario", "", expires=0)
     session.clear()
     return resposta
 
