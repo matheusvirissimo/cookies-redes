@@ -24,7 +24,7 @@ def criar_cookie():
     # dados
     nome_usuario = request.form["nome"]
     id_sessao = criar_id(15)
-    criacao_cookie = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    criacao_cookie = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
     referencia = request.headers.get("Referer")
     idioma = request.headers.get("Accept-Language")
     timestamp = str(time.time())
